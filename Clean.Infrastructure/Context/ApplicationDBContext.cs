@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Clean.Application.Common.Interface;
+using Clean.Domain.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +15,8 @@ namespace Clean.Infrastructure.Context
         {
 
         }
+
+        DbSet<Employee> Employees { get; set; }
+        DbSet<Department> Departments { get; set; }
     }
 }
