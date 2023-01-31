@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Clean.Infrastructure.Context
 {
-    public class ApplicationDBContext : DbContext
+    public class ApplicationDBContext : DbContext, IApplicationDbContext
     {
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options)
         {
 
         }
 
-        DbSet<Employee> Employees { get; set; }
-        DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Department> Departments { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace Clean.Infrastructure
         {
             services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(configuration.GetConnectionString("connection")));
 
-            //services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDBContext>());
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDBContext>());
 
             return services;
         }
