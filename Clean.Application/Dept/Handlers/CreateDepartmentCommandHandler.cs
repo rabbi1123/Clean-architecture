@@ -1,4 +1,6 @@
-﻿using Clean.Application.Dept.Commands;
+﻿using Clean.Application.Common.Interface;
+using Clean.Application.Dept.Commands;
+using Clean.Domain.Entity;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,9 +12,24 @@ namespace Clean.Application.Dept.Handlers
 {
     public class CreateDepartmentCommandHandler : IRequestHandler<CreateDepartmentCommand, int>
     {
-        public Task<int> Handle(CreateDepartmentCommand request, CancellationToken cancellationToken)
+        private readonly IApplicationDbContext context;
+
+        public CreateDepartmentCommandHandler(IApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            this.context = context;
+        }
+
+        public async Task<int> Handle(CreateDepartmentCommand request, CancellationToken cancellationToken)
+        {
+            var entity = new Department
+            {
+                DepartmentName = request.DepartmentName
+            };
+
+            context.Departments.Add(entity);
+            await context.SaveChangesAsync();
+
+            return entity.DepartmentId;
         }
     }
 }

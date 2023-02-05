@@ -12,5 +12,7 @@ namespace Clean.Application.Common.Interface
     {
         DbSet<Employee> Employees { get; set; }
         DbSet<Department> Departments { get; set; }
+
+        Task<int> SaveChangesAsync();
     }
 }
